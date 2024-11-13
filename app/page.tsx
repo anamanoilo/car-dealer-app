@@ -1,9 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
-import { fetchVehicleMakes } from "./api/vehicleService"
+import { getVehicleMakes } from "./api/vehicleService"
 import Link from "next/link"
 import { VehicleMake } from "./types"
-
 
 export default function FilterPage() {
   const [vehicleMakes, setVehicleMakes] = useState<VehicleMake[]>([])
@@ -14,7 +13,7 @@ export default function FilterPage() {
 
   useEffect(() => {
     async function getMakes() {
-      const makes = await fetchVehicleMakes()
+      const makes = await getVehicleMakes()
       setVehicleMakes(makes)
     }
 
