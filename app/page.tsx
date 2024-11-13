@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
+// import useSWR,{Fetcher} from 'swr'
 import { VehicleMake } from "./types"
 
 
@@ -11,13 +12,16 @@ async function fetchVehicleMakes(): Promise<VehicleMake[]> {
   return data.Results
 }
 
+// const fetcher: Fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function FilterPage() {
   const [vehicleMakes, setVehicleMakes] = useState<VehicleMake[]>([])
   const [selectedMake, setSelectedMake] = useState("")
   const [selectedYear, setSelectedYear] = useState("")
+  // const { data, error, isLoading } = useSWR('/api/user/123', fetcher)
   const [isNextEnabled, setIsNextEnabled] = useState(false)
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
+  const startYear = 2015;
 
   useEffect(() => {
     async function getMakes(){
@@ -57,7 +61,7 @@ export default function FilterPage() {
           onChange={(e) => setSelectedYear(e.target.value)}
         >
           <option value="">Select a year</option>
-          {Array.from({ length: currentYear - 2015 + 1 }, (_, i) => 2015 + i).map((year) => (
+          {Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i).map((year) => (
             <option key={year} value={year}>
               {year}
             </option>
