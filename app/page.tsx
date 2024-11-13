@@ -1,15 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
+import { fetchVehicleMakes } from "./api/vehicleService"
 import Link from "next/link"
 import { VehicleMake } from "./types"
-
-
-
-async function fetchVehicleMakes(): Promise<VehicleMake[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/vehicles/GetMakesForVehicleType/car?format=json`)
-  const data = await res.json()
-  return data.Results
-}
 
 
 export default function FilterPage() {
@@ -20,10 +13,11 @@ export default function FilterPage() {
   const currentYear = new Date().getFullYear()
 
   useEffect(() => {
-    async function getMakes(){
+    async function getMakes() {
       const makes = await fetchVehicleMakes()
       setVehicleMakes(makes)
     }
+
     getMakes()
   }, [])
 
