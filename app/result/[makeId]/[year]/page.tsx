@@ -1,11 +1,6 @@
 import { Suspense } from 'react';
+import { VehicleModel } from '@/app/types';
 
-type VehicleModel = {
-  Make_ID: number;
- Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
-}
 
 async function getVehicleModels(makeId: string, year: string): Promise<VehicleModel[]> {
   const res = await fetch(
