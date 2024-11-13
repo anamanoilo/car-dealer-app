@@ -1,13 +1,9 @@
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { VehicleMake } from "./types"
 
-type VehicleMake = {
-  MakeId: number
-  MakeName: string
-  VehicleTypeId: number
-  VehicleTypeName: string
-}
+
 
 async function fetchVehicleMakes(): Promise<VehicleMake[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/vehicles/GetMakesForVehicleType/car?format=json`)

@@ -1,3 +1,5 @@
+import { VehicleModel } from "@/app/types"
+
 async function getVehicleModels(makeId: string, year: string): Promise<VehicleModel[]> {
   try {
     const res = await fetch(
