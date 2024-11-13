@@ -4,12 +4,18 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 if (!API_URL) {
   throw new Error("NEXT_PUBLIC_API_URL environment variable is not set")
 }
-const VEHICLE_MODELS_ENDPOINT = `${API_URL}/vehicles/GetModelsForMakeAndYear?format=json`
-const VEHICLE_TYPES_ENDPOINT = `${API_URL}/vehicles/GetMakesForVehicleType/car?format=json`
+const VEHICLE_MODELS_ENDPOINT = `${API_URL}/vehicles/GetModelsForMakeIdYear`
+const VEHICLE_TYPES_ENDPOINT = `${API_URL}/vehicles/GetMakesForVehicleType/car`
+
+
+const params = new URLSearchParams({
+  format: "json",
+})
 
 async function getVehicleModels(makeId: string, year: string): Promise<VehicleModel[]> {
   try {
-    const res = await fetch(`${VEHICLE_MODELS_ENDPOINT}&makeId=${makeId}&year=${year}`, { cache: "no-store" })
+    const res = await fetch(`${VEHICLE_MODELS_ENDPOINT}/makeId/${makeId}/modelyear/${year}?${params}`)
+    console.log("res:", res.url)
     return await handleFetchResponse<VehicleModel[]>(res)
   } catch (error) {
     console.error("Failed to fetch vehicle models:", error)
@@ -19,7 +25,7 @@ async function getVehicleModels(makeId: string, year: string): Promise<VehicleMo
 
 async function getVehicleMakes(): Promise<VehicleMake[]> {
   try {
-    const res = await fetch(VEHICLE_TYPES_ENDPOINT)
+    const res = await fetch(`${VEHICLE_TYPES_ENDPOINT}?${params}`)
     return await handleFetchResponse<VehicleMake[]>(res)
   } catch (error) {
     console.error("Failed to fetch vehicle makes:", error)
