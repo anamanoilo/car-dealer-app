@@ -14,7 +14,7 @@ const params = new URLSearchParams({
 
 async function getVehicleModels(makeId: string, year: string): Promise<VehicleModel[]> {
   try {
-    const res = await fetch(`${VEHICLE_MODELS_ENDPOINT}/makeId/${makeId}/year/${year}?${params}`)
+    const res = await fetch(`${VEHICLE_MODELS_ENDPOINT}/makeId/${makeId}/modelyear/${year}?${params}`)
     console.log("res:", res.url)
     return await handleFetchResponse<VehicleModel[]>(res)
   } catch (error) {
