@@ -5,35 +5,39 @@ if (!API_URL) {
   throw new Error("NEXT_PUBLIC_API_URL environment variable is not set")
 }
 const VEHICLE_MODELS_ENDPOINT = `${API_URL}/vehicles/GetModelsForMakeAndYear?format=json`
+const VEHICLE_TYPES_ENDPOINT = `${API_URL}/vehicles/GetMakesForVehicleType/car?format=json`
 
 async function getVehicleModels(makeId: string, year: string): Promise<VehicleModel[]> {
   try {
     const res = await fetch(`${VEHICLE_MODELS_ENDPOINT}&makeId=${makeId}&year=${year}`, { cache: "no-store" })
-
-    if (!res.ok) {
-      console.error(`Failed to fetch vehicle models: ${res.statusText}`)
-      return []
-    }
-
-    const data: { Results?: VehicleModel[] } = await res.json()
-
-    if (!data.Results) {
-      console.warn("No Results property in the API response")
-      return []
-    }
-
-    console.log("data.Results:", data.Results)
-    return data.Results
+    return await handleFetchResponse<VehicleModel[]>(res)
   } catch (error) {
     console.error("Failed to fetch vehicle models:", error)
     return []
   }
 }
 
-async function fetchVehicleMakes(): Promise<VehicleMake[]> {
-  const res = await fetch(`${API_URL}/vehicles/GetMakesForVehicleType/car?format=json`)
+async function getVehicleMakes(): Promise<VehicleMake[]> {
+  try {
+    const res = await fetch(VEHICLE_TYPES_ENDPOINT)
+    return await handleFetchResponse<VehicleMake[]>(res)
+  } catch (error) {
+    console.error("Failed to fetch vehicle makes:", error)
+    return []
+  }
+}
+
+async function handleFetchResponse<T>(res: Response): Promise<T> {
+  if (!res.ok) {
+    console.error(`Fetch error: ${res.statusText}`)
+    return [] as unknown as T
+  }
   const data = await res.json()
+  if (!data.Results) {
+    console.warn("No Results property in the API response")
+    return [] as unknown as T
+  }
   return data.Results
 }
 
-export { getVehicleModels, fetchVehicleMakes }
+export { getVehicleModels, getVehicleMakes }

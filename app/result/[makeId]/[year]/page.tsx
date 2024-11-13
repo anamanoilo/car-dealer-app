@@ -1,8 +1,8 @@
 import { Suspense } from "react"
-import { getVehicleModels } from "../../../api/vehicleService"
+import { getVehicleModels } from "@/app/api/vehicleService"
 
 export default async function ResultPage({ params }: { params: { makeId: string; year: string } }) {
-  const { makeId, year } = params
+  const { makeId, year } = await params
   const models = await getVehicleModels(makeId, year)
   console.log("models:", models)
 
