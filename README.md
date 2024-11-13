@@ -46,3 +46,17 @@ npm build
 | `public/`      | Contains static assets like images and icons        |
 | `.env`         | Environment variables configuration file            |
 | `package.json` | NPM package configuration and dependencies          |
+
+
+### Areas for Improvement
+
+1. **Refactor the Filter Page**: 
+   - Rewrite the Filter Page using Server Components for improved performance.
+   - Alternatively, use SWR to fetch data efficiently in Client Components.
+
+2. **Implement Suspense**: 
+   - Utilize React's `Suspense` to handle loading states gracefully on the Filter Page.
+
+3. **Enhance UI**: 
+   - Improve the overall user interface for a more engaging and polished experience.
+   - Focus on accessibility and ensure the design is responsive.
