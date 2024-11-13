@@ -39,8 +39,10 @@ npm build
 | Folder/File    | Description                                         |
 |----------------|-----------------------------------------------------|
 | `app/`         | Next.js app router and main root page (Filter page) |
-| `app/fonts`    | binaries of custom fonts                            |
+| `app/api`      | API route handlers for server-side logic            |
 | `app/result`   | Result page                                         |
+| `app/fonts`    | binaries of custom fonts                            |
+| `app/types/`   | TypeScript type definitions                         |
 | `public/`      | Contains static assets like images and icons        |
 | `.env`         | Environment variables configuration file            |
 | `package.json` | NPM package configuration and dependencies          |
