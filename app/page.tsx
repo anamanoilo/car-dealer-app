@@ -5,7 +5,6 @@ import Link from "next/link"
 // import useSWR,{Fetcher} from 'swr'
 import { VehicleMake } from "./types"
 
-
 // const fetcher: Fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function FilterPage() {
@@ -14,8 +13,8 @@ export default function FilterPage() {
   const [selectedYear, setSelectedYear] = useState("")
   // const { data, error, isLoading } = useSWR('/api/user/123', fetcher)
   const [isNextEnabled, setIsNextEnabled] = useState(false)
-  const currentYear = new Date().getFullYear();
-  const startYear = 2015;
+  const currentYear = new Date().getFullYear()
+  const startYear = 2015
 
   useEffect(() => {
     async function getMakes() {
