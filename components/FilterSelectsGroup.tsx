@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { VehicleMake } from "@/app/types"
-import { Select } from "@/components/Select"
-import { generateModelYearsList } from "@/utils/generateModelYearsList"
+import { useState } from "react";
+import Link from "next/link";
+import { VehicleMake } from "@/app/types";
+import { Select } from "@/components/Select";
+import { generateModelYearsList } from "@/utils/generateModelYearsList";
 
 type FilterSelectGroupProps = {
-  vehicleMakes: VehicleMake[]
-}
+  vehicleMakes: VehicleMake[];
+};
 
 export const FilterSelectGroup: React.FC<FilterSelectGroupProps> = ({ vehicleMakes }) => {
-  const [selectedMake, setSelectedMake] = useState<string>("")
-  const [selectedYear, setSelectedYear] = useState<string>("")
+  const [selectedMake, setSelectedMake] = useState<string>("");
+  const [selectedYear, setSelectedYear] = useState<string>("");
   const yearOptions = generateModelYearsList().map((year) => ({
     id: year,
     name: year.toString(),
-  }))
+  }));
 
   return vehicleMakes?.length ? (
-    <div className="max-w-lg mx-auto">
+    <div className="mx-auto max-w-lg">
       <div className="mb-8 grid gap-4">
         <Select
           label="Vehicle Make"
@@ -40,5 +40,5 @@ export const FilterSelectGroup: React.FC<FilterSelectGroupProps> = ({ vehicleMak
     </div>
   ) : (
     <div>Loading options...</div>
-  )
-}
+  );
+};

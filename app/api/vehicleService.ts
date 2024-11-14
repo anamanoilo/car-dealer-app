@@ -17,7 +17,7 @@ async function getVehicleModels(makeId: string, year: string): Promise<VehicleMo
     return await handleFetchResponse<VehicleModel[]>(res);
   } catch (error) {
     console.error("Failed to fetch vehicle models:", error);
-    throw new Error('Something went wrong');
+    throw new Error("Something went wrong");
   }
 }
 
@@ -27,14 +27,14 @@ async function getVehicleMakes(): Promise<VehicleMake[]> {
     return await handleFetchResponse<VehicleMake[]>(res);
   } catch (error) {
     console.error("Failed to fetch vehicle makes:", error);
-    throw new Error('Something went wrong');
+    throw new Error("Something went wrong");
   }
 }
 
 async function handleFetchResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
     console.error(`Fetch error: ${res.statusText}`);
-    throw new Error()
+    throw new Error();
   }
   const data = await res.json();
   if (!data.Results) {

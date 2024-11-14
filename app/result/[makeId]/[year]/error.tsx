@@ -27,7 +27,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ error, reset }) => {
         </button>
         <button
           onClick={() => router.push("/")}
-          className="rounded bg-gray-700 px-4 py-2 text-white hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
+          className="rounded bg-gray-700 px-4 py-2 text-white hover:bg-gray-800 focus:bg-gray-800 focus:outline-none"
         >
           Go Home
         </button>
