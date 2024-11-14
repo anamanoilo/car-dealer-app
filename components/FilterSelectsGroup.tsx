@@ -19,7 +19,7 @@ export const FilterSelectGroup: React.FC<FilterSelectGroupProps> = ({ vehicleMak
   }))
 
   return vehicleMakes?.length ? (
-    <>
+    <div className="max-w-lg mx-auto">
       <div className="mb-8 grid gap-4">
         <Select
           label="Vehicle Make"
@@ -37,7 +37,7 @@ export const FilterSelectGroup: React.FC<FilterSelectGroupProps> = ({ vehicleMak
       >
         Next
       </Link>
-    </>
+    </div>
   ) : (
     <div>Loading options...</div>
   )
