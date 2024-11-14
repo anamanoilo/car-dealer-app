@@ -25,9 +25,9 @@ export default async function ResultPage({ params }: { params: Params }) {
   return (
     
       <div className="container mx-auto p-4">
-        <h2 className="mb-4 text-2xl font-bold">Vehicle models in {year}</h2>
+        <h2 className="mb-4 text-center text-2xl font-bold">Vehicle models in {year}</h2>
         <Suspense fallback={<div>Loading models...</div>}>
-        {models.length === 0 ? <p>No models found for the selected make and year.</p> : <ModelList models={models} />}
+        {models?.length ? <ModelList models={models} /> : <p>No models found for the selected make and year.</p> }
         </Suspense>
       </div>
   );

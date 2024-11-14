@@ -6,12 +6,9 @@ import { VehicleMake } from "@/app/types";
 import { Select } from "@/components/Select";
 import { generateModelYearsList } from "@/utils/generateModelYearsList";
 
-
-
 type FilterSelectGroupProps = {
   vehicleMakes: VehicleMake[];
 };
-
 
 export const FilterSelectGroup: React.FC<FilterSelectGroupProps> = ({vehicleMakes}) => {
 

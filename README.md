@@ -2,6 +2,8 @@
 
 allows users to filter vehicles by type and model year, and view the results on a separate page
 
+Live page: https://car-dealer-app-zeta.vercel.app/
+
 ## Quickstart
 
 Configure env vars by adding API_URL to `.env`
@@ -29,10 +31,14 @@ npm build
 - Fetches vehicle makes using
   [this endpoint](https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json).
 - Displays the selector to choose for the next step
+- The "Next" button is enabled only when a vehicle make and model year are selected
 
 #### Result page
 
-- Fetches and displays the details of selected vehicle.
+- After clicking "Next" user will be taken to a page showing a list of all the car models for the selected make and year.
+- Static paths are generated for the result pages using `generateStaticParams`.
+- Necessary data is fetched to pre-render these paths.
+
 
 ### Folder structure
 
@@ -57,4 +63,4 @@ npm build
    - Add CSS styling for select options.
 
 2. **Error Handling**:
-   - Return Error object from the fetching functions and handle in the web interface.
+   - Return Error object from the fetching functions and handle in the web interface and handle accroding to the status.

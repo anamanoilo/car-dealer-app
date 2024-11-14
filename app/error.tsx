@@ -17,7 +17,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ error, reset }) => {
 
   return (
     <div className="container flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
-      <h2 className="mb-4 text-2xl font-bold text-red-600">Something went wrong</h2>
+      <h2 className="mb-4 text-2xl font-bold text-red-600">Vehicle makes are not avaulable right now</h2>
       <div className="space-x-4">
         <button
           onClick={reset}
