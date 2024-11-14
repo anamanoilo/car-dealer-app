@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 type Option = {
   id: number;
@@ -26,7 +27,8 @@ export const Select: React.FC<SelectProps> = ({ label, options, selectedValue, o
       >
         <option value="">Select an option</option>
         {options.map((option) => (
-          <option key={option.id} value={option.id}>
+          //option.id is not always unique
+          <option key={uuidv4()} value={option.id}>
             {option.name}
           </option>
         ))}
