@@ -29,8 +29,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased `}>
         <header className="border-b-2 border-indigo-600">
           <div className="container mx-auto p-4">
-          <Link href="/" className='text-3xl font-bold'>
-            Car Dealing 🚙
+          <Link href="/" className='text-xl font-bold transition duration-200 hover:text-gray-300 focus:text-gray-300'>
+          🚙 Car Dealing
           </Link>
           </div>
         </header>
