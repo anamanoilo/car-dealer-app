@@ -1,30 +1,27 @@
-"use client"
-import { useState, useEffect } from "react"
-import Link from "next/link"
-// import { v4 as uuidv4 } from "uuid"
-import { getVehicleMakes } from "./api/vehicleService"
-import { VehicleMake } from "./types"
-import { Select } from "@/components/Select"
-import { generateModelYearsList } from "@/utils/generateModelYearsList"
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { getVehicleMakes } from "./api/vehicleService";
+import { VehicleMake } from "./types";
+import { Select } from "@/components/Select";
+import { generateModelYearsList } from "@/utils/generateModelYearsList";
 
 export default function FilterPage() {
-  const [vehicleMakes, setVehicleMakes] = useState<VehicleMake[] | null>(null)
-  const [selectedMake, setSelectedMake] = useState<string>("")
-  const [selectedYear, setSelectedYear] = useState<string>("")
-  const yearOptions = generateModelYearsList().map(year=>({
+  const [vehicleMakes, setVehicleMakes] = useState<VehicleMake[] | null>(null);
+  const [selectedMake, setSelectedMake] = useState<string>("");
+  const [selectedYear, setSelectedYear] = useState<string>("");
+  const yearOptions = generateModelYearsList().map((year) => ({
     id: year,
-    name: (year).toString(),
-  })) 
+    name: year.toString(),
+  }));
 
   useEffect(() => {
     async function getMakes() {
-      const makes = await getVehicleMakes()
-      setVehicleMakes(makes)
+      const makes = await getVehicleMakes();
+      setVehicleMakes(makes);
     }
-    getMakes()
-  }, [])
-
- 
+    getMakes();
+  }, []);
 
   return (
     <div className="container mx-auto p-4">
@@ -48,7 +45,7 @@ export default function FilterPage() {
           </div>
           <Link
             href={`/result/${selectedMake}/${selectedYear}`}
-            className={`rounded bg-indigo-600 px-4 py-2 text-white transition duration-200 ${selectedMake && selectedYear? "hover:bg-indigo-800 focus:outline-none focus:bg-indigo-800" : "cursor-not-allowed pointer-events-none opacity-70"}`}
+            className={`rounded bg-indigo-600 px-4 py-2 text-white transition duration-200 ${selectedMake && selectedYear ? "hover:bg-indigo-800 focus:bg-indigo-800 focus:outline-none" : "pointer-events-none cursor-not-allowed opacity-70"}`}
           >
             Next
           </Link>
@@ -57,5 +54,5 @@ export default function FilterPage() {
         <div>Loading options...</div>
       )}
     </div>
-  )
+  );
 }

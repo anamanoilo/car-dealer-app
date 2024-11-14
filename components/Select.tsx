@@ -10,23 +10,17 @@ type SelectProps = {
   options: Option[];
   selectedValue: string;
   onValueChange: (value: string) => void;
-}
+};
 
-export const Select: React.FC<SelectProps> =({
-  label,
-  options,
-  selectedValue,
-  onValueChange,
-} ) => {
-
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>)=>{
-    onValueChange(e.target.value as string)
-  }
+export const Select: React.FC<SelectProps> = ({ label, options, selectedValue, onValueChange }) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    onValueChange(e.target.value as string);
+  };
   return (
     <div>
       <label className="mb-2 block text-gray-100">{label}</label>
       <select
-        className="w-full rounded p-2 text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600"
+        className="w-full rounded bg-white p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-600"
         value={selectedValue}
         onChange={handleChange}
       >

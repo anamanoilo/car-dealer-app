@@ -26,18 +26,18 @@ npm build
 
 #### Filter page
 
-* Fetches vehicle makes using
+- Fetches vehicle makes using
   [this endpoint](https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json).
-* Displays the selector to choose for the next step
+- Displays the selector to choose for the next step
 
 #### Result page
 
-* Fetches and displays the details of selected vehicle.
+- Fetches and displays the details of selected vehicle.
 
 ### Folder structure
 
 | Folder/File    | Description                                         |
-|----------------|-----------------------------------------------------|
+| -------------- | --------------------------------------------------- |
 | `app/`         | Next.js app router and main root page (Filter page) |
 | `app/api`      | API route handlers for server-side logic            |
 | `app/result`   | Result page                                         |
@@ -47,16 +47,22 @@ npm build
 | `.env`         | Environment variables configuration file            |
 | `package.json` | NPM package configuration and dependencies          |
 
-
 ### Areas for Improvement
 
-1. **Refactor the Filter Page**: 
+1. **Refactor the Filter Page**:
+
    - Rewrite the Filter Page using Server Components for improved performance.
    - Alternatively, use SWR to fetch data efficiently in Client Components.
 
-2. **Implement Suspense**: 
+2. **Implement Suspense**:
+
    - Utilize React's `Suspense` to handle loading states gracefully on the Filter Page.
 
-3. **Enhance UI**: 
+3. **Enhance UI**:
    - Improve the overall user interface for a more engaging and polished experience.
+   - Reset CSS.
    - Focus on accessibility and ensure the design is responsive.
+   - Add CSS styling for select options.
+
+4. **Error Handling**:
+   - Return Error object from the fetching functions and handle in the web interface.

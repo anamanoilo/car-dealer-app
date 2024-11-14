@@ -1,13 +1,12 @@
-import { Suspense } from "react"
+import { Suspense } from "react";
 import { getVehicleModels, getVehicleMakes } from "@/app/api/vehicleService";
 import { ModelList } from "@/components/ModelList";
 import { generateModelYearsList } from "@/utils/generateModelYearsList";
 
-
 export async function generateStaticParams() {
   const makes = await getVehicleMakes();
   const makeIds = makes.map((make) => make.MakeId);
-  const modelYears = generateModelYearsList()
+  const modelYears = generateModelYearsList();
   const params = makeIds.flatMap((makeId) =>
     modelYears.map((year) => ({
       makeId: makeId.toString(),
@@ -18,24 +17,17 @@ export async function generateStaticParams() {
   return params;
 }
 
-type Params = Promise<{ makeId: string; year: string }>
+type Params = Promise<{ makeId: string; year: string }>;
 
 export default async function ResultPage({ params }: { params: Params }) {
-  const { makeId, year } = await params
-  const models = await getVehicleModels(makeId, year)
+  const { makeId, year } = await params;
+  const models = await getVehicleModels(makeId, year);
   return (
     <Suspense fallback={<div>Loading models...</div>}>
       <div className="container mx-auto p-4">
-        <h2 className="mb-4 text-2xl font-bold">
-          Vehicle models in {year}
-        </h2>
-        {models.length === 0 ? (
-          <p>No models found for the selected make and year.</p>
-        ) : (
-          <ModelList models={models}/>
-        )}
+        <h2 className="mb-4 text-2xl font-bold">Vehicle models in {year}</h2>
+        {models.length === 0 ? <p>No models found for the selected make and year.</p> : <ModelList models={models} />}
       </div>
     </Suspense>
-  )
+  );
 }
-
