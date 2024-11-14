@@ -33,12 +33,7 @@ export const FilterSelectGroup: React.FC<FilterSelectGroupProps> = ({ vehicleMak
       <Link
         href={`/result/${selectedMake}/${selectedYear}`}
         className={`rounded bg-indigo-600 px-4 py-2 text-white transition duration-200 ${selectedMake && selectedYear ? "hover:bg-indigo-800 focus:bg-indigo-800 focus:outline-none" : "pointer-events-none cursor-not-allowed opacity-70"}`}
-        onClick={(e) => {
-          //prevent requests without data in production
-          if (!selectedMake && !selectedYear) {
-            e.preventDefault()
-          }
-        }}
+        prefetch={false}
       >
         Next
       </Link>
