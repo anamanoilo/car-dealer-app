@@ -1,16 +1,20 @@
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
+// import { v4 as uuidv4 } from "uuid"
 import { getVehicleMakes } from "./api/vehicleService"
 import { VehicleMake } from "./types"
+import { Select } from "@/components/Select"
+import { generateModelYearsList } from "@/utils/generateModelYearsList"
 
 export default function FilterPage() {
-  const [vehicleMakes, setVehicleMakes] = useState<VehicleMake[]>([])
-  const [selectedMake, setSelectedMake] = useState("")
-  const [selectedYear, setSelectedYear] = useState("")
-  const [isNextEnabled, setIsNextEnabled] = useState(false)
-  const currentYear = new Date().getFullYear()
-  const startYear = 2015
+  const [vehicleMakes, setVehicleMakes] = useState<VehicleMake[] | null>(null)
+  const [selectedMake, setSelectedMake] = useState<string>("")
+  const [selectedYear, setSelectedYear] = useState<string>("")
+  const yearOptions = generateModelYearsList().map(year=>({
+    id: year,
+    name: (year).toString(),
+  })) 
 
   useEffect(() => {
     async function getMakes() {
@@ -20,48 +24,31 @@ export default function FilterPage() {
     getMakes()
   }, [])
 
-  useEffect(() => {
-    setIsNextEnabled(!!selectedMake && !!selectedYear)
-  }, [selectedMake, selectedYear])
+ 
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="mb-4 text-2xl font-bold">Filter Vehicles</h1>
-      {vehicleMakes.length ? (
+      <h2 className="mb-4 text-2xl font-bold">Filter Vehicles</h2>
+      {vehicleMakes?.length ? (
         <>
-          <div className="mb-4">
-            <label className="mb-2 block text-gray-700">Vehicle Make:</label>
-            <select
-              className="w-full rounded border p-2"
-              value={selectedMake}
-              onChange={(e) => setSelectedMake(e.target.value)}
-            >
-              <option value="">Select a make</option>
-              {vehicleMakes.map((make) => (
-                <option key={make.MakeId} value={make.MakeId}>
-                  {make.MakeName}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-4">
-            <label className="mb-2 block text-gray-700">Model Year:</label>
-            <select
-              className="w-full rounded border p-2"
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
-            >
-              <option value="">Select a year</option>
-              {Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i).map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
+          <div className="mb-8 grid gap-4">
+            <Select
+              label="Vehicle Make"
+              options={vehicleMakes.map((make) => ({ id: make.MakeId, name: make.MakeName }))}
+              selectedValue={selectedMake}
+              onValueChange={setSelectedMake}
+            />
+
+            <Select
+              label="Model Year"
+              options={yearOptions}
+              selectedValue={selectedYear}
+              onValueChange={setSelectedYear}
+            />
           </div>
           <Link
             href={`/result/${selectedMake}/${selectedYear}`}
-            className={`rounded bg-blue-500 p-2 text-white ${isNextEnabled ? "" : "cursor-not-allowed opacity-50"}`}
+            className={`rounded bg-indigo-600 px-4 py-2 text-white transition duration-200 ${selectedMake && selectedYear? "hover:bg-indigo-800 focus:outline-none focus:bg-indigo-800" : "cursor-not-allowed pointer-events-none opacity-70"}`}
           >
             Next
           </Link>
