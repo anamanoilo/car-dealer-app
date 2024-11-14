@@ -1,5 +1,6 @@
 import { VehicleModel } from "@/app/types";
 
+
 type ModelsListProps = {
   models: VehicleModel[];
 };

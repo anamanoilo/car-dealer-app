@@ -43,26 +43,18 @@ npm build
 | `app/result`   | Result page                                         |
 | `app/fonts`    | binaries of custom fonts                            |
 | `app/types/`   | TypeScript type definitions                         |
-| `public/`      | Contains static assets like images and icons        |
+| `components/`  | contains React UI components                        |
+| `utils/`       | contains utility functions                        |
 | `.env`         | Environment variables configuration file            |
 | `package.json` | NPM package configuration and dependencies          |
 
 ### Areas for Improvement
 
-1. **Refactor the Filter Page**:
-
-   - Rewrite the Filter Page using Server Components for improved performance.
-   - Alternatively, use SWR to fetch data efficiently in Client Components.
-
-2. **Implement Suspense**:
-
-   - Utilize React's `Suspense` to handle loading states gracefully on the Filter Page.
-
-3. **Enhance UI**:
+1. **Enhance UI**:
    - Improve the overall user interface for a more engaging and polished experience.
    - Reset CSS.
    - Focus on accessibility and ensure the design is responsive.
    - Add CSS styling for select options.
 
-4. **Error Handling**:
+2. **Error Handling**:
    - Return Error object from the fetching functions and handle in the web interface.
